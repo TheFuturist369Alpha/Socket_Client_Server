@@ -15,8 +15,10 @@ namespace E_Commerce_Application.Startup_Extensions
                 conf.UseSqlServer(config.GetConnectionString("Default"));
             });
             
+            
             service.AddControllers();
             service.AddScoped<IProductRepo, ProductRepo>();
+            service.AddScoped(typeof(IGenRepos<>), typeof(GenRepo<>));
             service.AddEndpointsApiExplorer();
             service.AddSwaggerGen();
             return service;

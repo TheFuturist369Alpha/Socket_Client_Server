@@ -1,4 +1,5 @@
-﻿using App_Core.Domains.Repo_Contracts;
+﻿using App_Core.Domains.Entities;
+using App_Core.Domains.Repo_Contracts;
 using App_Core.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,15 @@ namespace E_Commerce_Application.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepo _repo;
-        public ProductsController(IProductRepo repo)
+        private readonly IGenRepos<Product> _repo;
+        private readonly IGenRepos<ProductBrand> _brandRepo;
+        private readonly IGenRepos<ProductType> _typeRepo;
+        public ProductsController(IGenRepos<Product> repo, 
+            IGenRepos<ProductBrand> brandRepo, IGenRepos<ProductType> typeRepo)
         {
             _repo = repo;
+            _brandRepo = brandRepo;
+            _typeRepo = typeRepo;
         }
 
         [HttpGet("product get/{Id}")]
