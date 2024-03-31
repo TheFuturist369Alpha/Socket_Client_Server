@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\App Core.csproj" />
+    <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

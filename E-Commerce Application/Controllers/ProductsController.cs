@@ -25,15 +25,29 @@ namespace E_Commerce_Application.Controllers
         public async Task<ActionResult<ProductDTO>> GetProduct(Guid Id)
         {
             if (Id != null)
-                return (await _repo.GetProductById(Id)).ToProductDTO();
+                return (await _repo.GetByIdAsync(Id)).ToProductDTO();
             return BadRequest();
         }
 
-        [HttpPost("Add product")]
-        public async Task<ActionResult> AddProduct(ProductDTO product)
+        [HttpGet("Get products")]
+        public async Task<ActionResult> GetProducts()
         {
-            await _repo.AddProduct(product.ToProduct());
-            return Ok(product); 
+            
+            return Ok(await _repo.GetAllAsync()); 
+        }
+
+        [HttpGet]
+        [Route("Get Brands")]
+        public async Task<ActionResult> GetBrands()
+        {
+            return Ok(await _brandRepo.GetAllAsync());
+        }
+
+        [HttpGet]
+        [Route("Get Types")]
+        public async Task<ActionResult> GetTypes()
+        {
+            return Ok(await _brandRepo.GetAllAsync());
         }
     }
 }

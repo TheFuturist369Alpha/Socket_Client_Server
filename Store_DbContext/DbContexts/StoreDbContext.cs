@@ -7,6 +7,7 @@ using System.Text.Json.Nodes;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection.Emit;
+using Microsoft.Extensions.Logging;
 
 namespace App_Infrastructure.DbContexts
 
@@ -34,61 +35,66 @@ namespace App_Infrastructure.DbContexts
 
 
 
-           
+
         }
 
 
-        public static async Task SeedData(IServiceProvider provider)
+        public static async Task SeedData(IServiceProvider provider, ILoggerFactory factory)
         {
-            using(var scope= provider.CreateScope())
+            using (var scope = provider.CreateScope())
             {
-                StoreDbContext cxt= scope.ServiceProvider.GetRequiredService<StoreDbContext>();
-
-                if (!cxt.products.Any())
+                StoreDbContext cxt = scope.ServiceProvider.GetRequiredService<StoreDbContext>();
+                try
                 {
-                    string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Products.json");
-                    var p1l = JsonSerializer.Deserialize<List<Product>>(p1);
-
-                    foreach (var p in p1l)
+                    if (!cxt.products.Any())
                     {
-                        cxt.products.Add(p);
+                        string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Products.json");
+                        var p1l = JsonSerializer.Deserialize<List<Product>>(p1);
+
+                        foreach (var p in p1l)
+                        {
+                            cxt.products.Add(p);
+                        }
+                    }
+                    if (!cxt.brands.Any())
+                    {
+                        string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Brands.json");
+                        var p1l = JsonSerializer.Deserialize<List<ProductBrand>>(p1);
+
+                        foreach (var p in p1l)
+                        {
+                            cxt.brands.Add(p);
+                        }
+
                     }
 
-                }
-
-                if (!cxt.brands.Any())
-                {
-                    string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Brands.json");
-                    var p1l = JsonSerializer.Deserialize<List<ProductBrand>>(p1);
-
-                    foreach (var p in p1l)
+                    if (!cxt.types.Any())
                     {
-                        cxt.brands.Add(p);
+                        string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Product_Types.json");
+                        var p1l = JsonSerializer.Deserialize<List<ProductType>>(p1);
+
+                        foreach (var p in p1l)
+                        {
+                            cxt.types.Add(p);
+                        }
+
                     }
 
-                }
+                    await cxt.SaveChangesAsync();
 
-                if (!cxt.types.Any())
+
+
+                }
+                catch (Exception ex)
                 {
-                    string p1 = File.ReadAllText("../Store_DbContext/Seed Data/Product_Types.json");
-                    var p1l = JsonSerializer.Deserialize<List<ProductType>>(p1);
-
-                    foreach (var p in p1l)
-                    {
-                        cxt.types.Add(p);
-                    }
-
+                    var logger = factory.CreateLogger<StoreDbContext>();
+                    logger.LogError(ex.Message);
                 }
-
-                await cxt.SaveChangesAsync();
-
-
-
             }
+
+
+
+
         }
-
-
-
-
     }
 }

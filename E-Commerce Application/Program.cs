@@ -18,10 +18,21 @@ if (app.Environment.IsDevelopment())
 
 using (var scope=app.Services.CreateScope())
 {
-    var cxt = scope.ServiceProvider.GetService<StoreDbContext>();
-    cxt.Database.EnsureCreated();
-    cxt.Database.Migrate();
-   await StoreDbContext.SeedData(scope.ServiceProvider);
+    var loggerf = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
+
+    try
+    {
+        var cxt = scope.ServiceProvider.GetService<StoreDbContext>();
+        cxt.Database.EnsureCreated();
+        cxt.Database.Migrate();
+        await StoreDbContext.SeedData(scope.ServiceProvider,loggerf);
+    }
+
+    catch(Exception ex)
+    {
+        var logger = loggerf.CreateLogger<Program>();
+        logger.LogError(ex.Message);
+    }
 }
 
 app.UseHttpsRedirection();
