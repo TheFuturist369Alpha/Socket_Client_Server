@@ -9,7 +9,7 @@ using Utilities.Classes;
 
 namespace App_Core.Domains.Repo_Contracts
 {
-    public interface IGenRepos<T>
+    public interface IGenRepos<T> where T:BaseEntity
     {
         public Task<T> GetByIdAsync(Guid id);
         public Task<IReadOnlyList<T>> GetAllAsync();

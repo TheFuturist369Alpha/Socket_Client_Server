@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utilities.Classes;
+using App_Core.Domains.Entities;
 
 namespace App_Infrastructure.Data
 {
-    public class SpecificationEvaluator<T> where T: BaseSpecification<T>
+    public class SpecificationEvaluator<T> where T: BaseEntity
     {
         public static IQueryable <T> GetQuery(IQueryable<T> InputQuery,ISpecification<T> spec)
         {

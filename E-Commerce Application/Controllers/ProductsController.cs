@@ -3,6 +3,7 @@ using App_Core.Domains.Repo_Contracts;
 using App_Core.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Utilities.Classes;
 
 namespace E_Commerce_Application.Controllers
 {
@@ -33,7 +34,7 @@ namespace E_Commerce_Application.Controllers
         public async Task<ActionResult> GetProducts()
         {
             
-            return Ok(await _repo.GetAllAsync()); 
+            return Ok(await _repo.ListAsync(new ProductBrandTypeSpec())); 
         }
 
         [HttpGet]

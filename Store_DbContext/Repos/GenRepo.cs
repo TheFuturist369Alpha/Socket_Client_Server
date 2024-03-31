@@ -9,10 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities.Classes;
 
 namespace App_Infrastructure.Repos
 {
-    public class GenRepo<T> : IGenRepos<T> where T:class
+    public class GenRepo<T> : IGenRepos<T> where T:BaseEntity
     {
         private readonly StoreDbContext _dbContext;
         public GenRepo(StoreDbContext dbContext)
@@ -30,14 +31,19 @@ namespace App_Infrastructure.Repos
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public Task<T> GetEntityWithSpec(ISpecification<T> specification)
+        public async Task<T> GetEntityWithSpec(ISpecification<T> specification)
         {
-            throw new NotImplementedException();
+            return await ApplySpec(specification).FirstOrDefaultAsync();
         }
 
-        public Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
+        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
         {
-            throw new NotImplementedException();
+            return await ApplySpec(spec).ToListAsync();
+        }
+
+        private IQueryable<T> ApplySpec(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
         }
     }
 }

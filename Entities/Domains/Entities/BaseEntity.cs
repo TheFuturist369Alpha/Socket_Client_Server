@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace App_Core.Domains.Entities
 {
-    public class ProductBrand:BaseEntity
+    public class BaseEntity
     {
-       
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }
