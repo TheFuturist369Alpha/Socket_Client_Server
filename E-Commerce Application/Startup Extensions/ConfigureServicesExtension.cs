@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using App_Infrastructure.Repos;
 using App_Core.Domains.Repo_Contracts;
+using E_Commerce_Application.Helpers;
 
 namespace E_Commerce_Application.Startup_Extensions
 {
@@ -19,6 +20,7 @@ namespace E_Commerce_Application.Startup_Extensions
             service.AddControllers();
             service.AddScoped<IProductRepo, ProductRepo>();
             service.AddScoped(typeof(IGenRepos<>), typeof(GenRepo<>));
+            service.AddAutoMapper(typeof(MappingProfiles));
             service.AddEndpointsApiExplorer();
             service.AddSwaggerGen();
             return service;

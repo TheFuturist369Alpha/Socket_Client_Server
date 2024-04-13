@@ -16,5 +16,11 @@ namespace Utilities.Classes
             AddIncludes(x => x.ProductBrand);
 
         }
+
+        public ProductBrandTypeSpec(Guid Id):base(x=>x.Id==Id)
+        {
+            AddIncludes(x => x.ProductType);
+            AddIncludes(x => x.ProductBrand); 
+        }
     }
 }
