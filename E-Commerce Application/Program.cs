@@ -14,6 +14,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
 using (var scope=app.Services.CreateScope())
@@ -34,7 +35,7 @@ using (var scope=app.Services.CreateScope())
         logger.LogError(ex.Message);
     }
 }
-
+app.UseStatusCodePagesWithReExecute("/error/{0}");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

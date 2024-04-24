@@ -9,9 +9,8 @@ using Utilities.Classes;
 
 namespace E_Commerce_Application.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    
+    public class ProductsController : CBaseController
     {
         private readonly IGenRepos<Product> _repo;
         private readonly IGenRepos<ProductBrand> _brandRepo;
