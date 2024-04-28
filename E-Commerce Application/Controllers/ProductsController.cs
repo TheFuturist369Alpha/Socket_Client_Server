@@ -2,6 +2,7 @@
 using App_Core.Domains.Repo_Contracts;
 using App_Core.DTOs;
 using AutoMapper;
+using E_Commerce_Application.Errors;
 using E_Commerce_Application.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +27,17 @@ namespace E_Commerce_Application.Controllers
         }
 
         [HttpGet("product get/{Id}")]
+        [ProducesResponseType(typeof(APIResponse),StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ProductDTO>> GetProduct(Guid Id)
         {
-            if (Id != null)
-                return _mappingProfiles.Map<Product,ProductDTO>(await _repo.GetByIdAsync(Id));
-            return BadRequest();
+            if (Id == null) return BadRequest();
+
+            var spec = new ProductBrandTypeSpec(Id);
+            var product = _repo.GetEntityWithSpec(spec);
+            if (product == null) return NotFound( new APIResponse(404));
+            return _mappingProfiles.Map<Product, ProductDTO>(await product);
+
         }
 
         [HttpGet("Get products")]

@@ -1,6 +1,7 @@
 using E_Commerce_Application.Startup_Extensions;
 using App_Infrastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using E_Commerce_Application.MiddleWare;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
+app.UseMiddleware<ExceptionMiddleware>();
 
 using (var scope=app.Services.CreateScope())
 {
