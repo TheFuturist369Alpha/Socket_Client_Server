@@ -32,10 +32,6 @@ namespace App_Infrastructure.DbContexts
             modelBuilder.Entity<ProductBrand>().ToTable("Brands");
             modelBuilder.Entity<ProductType>().ToTable("Product Types");
 
-
-
-
-
         }
 
 

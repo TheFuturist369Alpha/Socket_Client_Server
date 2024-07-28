@@ -19,8 +19,20 @@ namespace App_Infrastructure.Data
             {
                 query = query.Where(spec.Criteria);
             }
+            if(spec.OrderBy != null)
+            {
+                query = query.OrderBy(spec.OrderBy);
+            }
+            if (spec.OrderByDesc != null)
+            {
+                query = query.OrderByDescending(spec.OrderByDesc);
+            }
 
-            query=spec.Includes.Aggregate(query, (current, include)=>current.Include(include));
+            if (spec.IsPagingEnabled)
+            {
+                query=query.Take(spec.Take).Skip(spec.Skip);
+            }
+            query =spec.Includes.Aggregate(query, (current, include)=>current.Include(include));
 
             return query;
 

@@ -26,8 +26,9 @@ using (var scope=app.Services.CreateScope())
     try
     {
         var cxt = scope.ServiceProvider.GetService<StoreDbContext>();
+        
         cxt.Database.EnsureCreated();
-        cxt.Database.Migrate();
+       
         await StoreDbContext.SeedData(scope.ServiceProvider,loggerf);
     }
 

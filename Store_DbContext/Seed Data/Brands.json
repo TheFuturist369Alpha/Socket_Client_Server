@@ -2,5 +2,16 @@
   {
     "Id": "4CFDFFE8-E8CB-47C3-BB53-B53D90B2726E",
     "Name": "Asda"
+  },
+
+  {
+    "Id": "78FC303A-DAC9-4194-9247-60D6DEEFECBE",
+    "Name": "Morrison"
+  },
+
+  {
+    "Id": "6AA5E16C-1C2D-4138-A03A-87BB67CF48F9",
+    "Name":  "Tesco"
   }
+
 ]

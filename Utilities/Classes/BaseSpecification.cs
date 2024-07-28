@@ -20,9 +20,34 @@ namespace Utilities.Classes
 
         public List<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
 
+        public Expression<Func<T, object>> OrderBy { get; private set; }
+        public Expression<Func<T, object>> OrderByDesc { get; private set; }
+        public int Take { get; private set; }
+        public int Skip { get; private set; }
+        public bool IsPagingEnabled { get; private set; }
+
+
         protected void AddIncludes(Expression<Func<T, object>> Includes)
         {
             this.Includes.Add(Includes); 
         }
+
+        protected void SetOrderBy(Expression<Func<T, object>> OrderBy)
+        {
+        this.OrderBy = OrderBy; 
+        } 
+        protected void SetOrderByDesc(Expression<Func<T, object>> OrderByDesc)
+        {
+        this.OrderByDesc = OrderByDesc; 
+        }
+
+        protected void ApplyPaging(int Take, int Skip)
+        {
+            this.Take = Take;
+            this.Skip = Skip;
+            this.IsPagingEnabled = true;
+        }
+
+        
     }
 }

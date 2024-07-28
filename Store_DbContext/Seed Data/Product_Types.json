@@ -2,5 +2,20 @@
   {
     "Id": "6289CAC9-8641-44D5-A06B-94A0967A568C",
     "Name": "Clothes"
+  },
+
+  {
+    "Id":  "CEA6D220-7FE3-4C65-BD8D-83B9FC5CAF72" ,
+    "Name": "Shoes"
+  },
+
+  {
+    "Id": "29574082-5124-4A21-872B-D8DAB2A6DC73",
+    "Name": "Tech"
+  },
+
+  {
+    "Id": "C8461347-F887-479E-851C-C2983BD66772",
+    "Name": "Automobile"
   }
 ]

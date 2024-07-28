@@ -41,10 +41,10 @@ namespace E_Commerce_Application.Controllers
         }
 
         [HttpGet("Get products")]
-        public async Task<ActionResult> GetProducts()
+        public async Task<ActionResult> GetProducts(string? sort, Guid? brandId, Guid? typeId)
         {
             
-            return Ok((await _repo.ListAsync(new ProductBrandTypeSpec())).Select(product=>product.ToProductDTO())); 
+            return Ok((await _repo.ListAsync(new ProductBrandTypeSpec(sort,brandId,typeId))).Select(product=>product.ToProductDTO())); 
         }
 
         [HttpGet]

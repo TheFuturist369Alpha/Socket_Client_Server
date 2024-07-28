@@ -1,11 +1,71 @@
 ﻿[
   {
+    "Id": "3A3AB5F1-D19B-44E9-86D7-E9932084355E",
+    "Name": "Zick rollers",
+    "Price": 200.23,
+    "Description": "Roller Scates blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "29574082-5124-4A21-872B-D8DAB2A6DC73",
+    "ProductBrandId": "4CFDFFE8-E8CB-47C3-BB53-B53D90B2726E"
+  },
+
+  {
     "Id": "D30C6C64-228E-4CEC-AAF7-D2B360D34CE7",
-    "Name": "Roller Scaters",
+    "Name": "Head warmer",
     "Price": 12.23,
     "Description": "Roller Scates blah blah",
     "PicrureURL": "End of f.txt",
     "ProductTypeId": "6289CAC9-8641-44D5-A06B-94A0967A568C",
+    "ProductBrandId": "6AA5E16C-1C2D-4138-A03A-87BB67CF48F9"
+  },
+
+  {
+    "Id": "CBC777C8-195F-4B02-80B1-7B036CC6D81D",
+    "Name": "Apple watch",
+    "Price": 70.23,
+    "Description": "apple watch blah blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "29574082-5124-4A21-872B-D8DAB2A6DC73",
+    "ProductBrandId": "4CFDFFE8-E8CB-47C3-BB53-B53D90B2726E"
+  },
+
+  {
+    "Id": "820D571A-F599-4797-91E6-8181971DC8DB",
+    "Name": "T-Shirt",
+    "Price": 70.23,
+    "Description": "apple watch blah blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "6289CAC9-8641-44D5-A06B-94A0967A568C",
+    "ProductBrandId": "78FC303A-DAC9-4194-9247-60D6DEEFECBE"
+  },
+
+  {
+    "Id": "4FAC8926-5F7A-40B7-B59C-6D37230677A4",
+    "Name": "Ferrari",
+    "Price": 20000.23,
+    "Description": "apple watch blah blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "C8461347-F887-479E-851C-C2983BD66772",
+    "ProductBrandId": "78FC303A-DAC9-4194-9247-60D6DEEFECBE"
+  },
+
+  {
+    "Id": "F8A06A6E-ED38-4B7A-AF1E-C1B4E3F9DBDE",
+    "Name": "Lenovo Laptop",
+    "Price": 350.23,
+    "Description": "apple watch blah blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "29574082-5124-4A21-872B-D8DAB2A6DC73",
+    "ProductBrandId": "6AA5E16C-1C2D-4138-A03A-87BB67CF48F9"
+  },
+
+  {
+    "Id": "54871FDE-FCD6-492B-A4EB-F41CA5FB9C47",
+    "Name": "Tesla",
+    "Price": 50000.23,
+    "Description": "apple watch blah blah blah",
+    "PicrureURL": "End of f.txt",
+    "ProductTypeId": "C8461347-F887-479E-851C-C2983BD66772",
     "ProductBrandId": "4CFDFFE8-E8CB-47C3-BB53-B53D90B2726E"
   }
 ]
