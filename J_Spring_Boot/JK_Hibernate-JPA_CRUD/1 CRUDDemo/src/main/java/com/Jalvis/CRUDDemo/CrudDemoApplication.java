@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -19,11 +20,16 @@ public class CrudDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAOImp std){
 		return runner->{
-           System.out.print("Find student by Id:");
-			Scanner scnr=new Scanner(System.in);
-			int id=scnr.nextInt();
-			System.out.print(getStudentById(id,std).toString());
+		updateStudent(std,6);
+		queryStudents(std);
 		};
+	}
+
+	private void queryStudents(StudentDAOImp std){
+		List<Student> students=std.getStudents();
+		for(Student i: students){
+			System.out.println(i);
+		}
 	}
 
 	private void createStudent(StudentDAOImp std){
@@ -39,6 +45,14 @@ public class CrudDemoApplication {
 		}
 		System.out.println("Student of id:"+id+" not found.");
 		return null;
+	}
+
+	private void updateStudent(StudentDAOImp std, int id){
+	Student student=std.get(id);
+	student.setEmail("banner@gmail.com");
+	std.updateStudent(student);
+
+
 	}
 
 }
